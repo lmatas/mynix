@@ -57,12 +57,14 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter.withAllGrammars
-      startup-nvim
-    ];
+   
   };
 
   xdg.configFile."tmux/tmux.conf".source = ./tmux.conf;
+
+  xdg.configFile."nvim" = {
+    source = ./nvim;
+    recursive = true;  # Asegura que todos los subdirectorios se copien
+  };
 
 }
