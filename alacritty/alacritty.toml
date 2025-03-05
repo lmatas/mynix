@@ -1,0 +1,41 @@
+# Configuración de Alacritty con Tmux
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dynamic_padding = false
+decorations = "full"
+startup_mode = "Windowed"
+opacity = 1.0
+
+[window.padding]
+x = 6
+y = 6
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
+[terminal.shell]
+program = "/run/current-system/sw/bin/tmux"
+args = ["new-session", "-A", "-s", "main"]

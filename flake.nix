@@ -7,7 +7,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home-manager
-    home-manager.url = "github:rycee/home-manager/master";
+    # home-manager.url = "github:rycee/home-manager/master";
 
     # Homebrew start
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
@@ -38,7 +38,11 @@
           
           mkalias
           nixfmt-classic
-       
+          neovim
+          tmux
+          oh-my-posh
+          alacritty
+          
           jdk11
           maven
 
@@ -47,6 +51,13 @@
 
           nodejs_20
           yarn
+
+          lua-language-server
+          solargraph 
+          bash-language-server
+          jdt-language-server
+          pyright
+  
 
         ];
 
@@ -163,13 +174,16 @@
               };
             } # nix-homebrew
 
-            # Home Manager!  
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.lmatas = { imports = [ ./home.nix ]; };
-            } # home-manager
+            # # Home Manager!  
+            # home-manager.darwinModules.home-manager
+            # {
+            #   home-manager.useGlobalPkgs = true;
+            #   home-manager.useUserPackages = true;
+            #   home-manager.users.lmatas = { imports = [ ./home.nix ]; };
+            
+
+            
+            # } # home-manager
 
           ];
         };
