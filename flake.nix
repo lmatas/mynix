@@ -52,6 +52,10 @@
           nodejs_20
           yarn
 
+          ruby_3_1
+          bundler
+          gnumake
+            
           lua-language-server
           solargraph 
           bash-language-server
