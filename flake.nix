@@ -6,9 +6,6 @@
     nix-darwin.url = "github:LnL7/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Home-manager
-    # home-manager.url = "github:rycee/home-manager/master";
-
     # Homebrew start
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
@@ -28,7 +25,7 @@
 
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew
     , homebrew-core, homebrew-cask, homebrew-bundle }:
     let
       configuration = { pkgs, config, ... }: {
@@ -178,17 +175,6 @@
                 mutableTaps = false;
               };
             } # nix-homebrew
-
-            # # Home Manager!  
-            # home-manager.darwinModules.home-manager
-            # {
-            #   home-manager.useGlobalPkgs = true;
-            #   home-manager.useUserPackages = true;
-            #   home-manager.users.lmatas = { imports = [ ./home.nix ]; };
-            
-
-            
-            # } # home-manager
 
           ];
         };
