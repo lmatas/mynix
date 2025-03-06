@@ -42,6 +42,7 @@
           tmux
           oh-my-posh
           alacritty
+          lazygit
           
           jdk11
           maven
@@ -56,11 +57,11 @@
           bundler
           gnumake
             
-          lua-language-server
-          solargraph 
-          bash-language-server
-          jdt-language-server
-          pyright
+          #lua-language-server
+          #solargraph 
+          #bash-language-server
+          #jdt-language-server
+          #pyright
   
 
         ];
