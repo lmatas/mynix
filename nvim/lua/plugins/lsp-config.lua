@@ -48,47 +48,53 @@ return {
           }
         })
 
-         -- Configuración para Java (jdtls)
-         lspconfig.jdtls.setup({
-          capabilities = capabilities,
-          cmd = { "jdtls" },
-          root_dir = function(fname)
-            return require("lspconfig.util").root_pattern(
-              "pom.xml",
-              "gradle.build",
-              "build.gradle",
-              ".git"
-            )(fname) or vim.fn.getcwd()
-          end,
-          settings = {
-            java = {
-              signatureHelp = { enabled = true },
-              contentProvider = { preferred = "fernflower" },
-              completion = {
-                favoriteStaticMembers = {
-                  "org.junit.Assert.*",
-                  "org.junit.Assume.*",
-                  "org.junit.jupiter.api.Assertions.*",
-                  "org.junit.jupiter.api.Assumptions.*",
-                  "org.junit.jupiter.api.DynamicContainer.*",
-                  "org.junit.jupiter.api.DynamicTest.*",
-                },
-              },
-              sources = {
-                organizeImports = {
-                  starThreshold = 9999,
-                  staticStarThreshold = 9999,
-                },
-              },
-              codeGeneration = {
-                toString = {
-                  template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-                },
-                useBlocks = true,
-              },
-            },
-          },
-        })
+        --  -- Configuración para Java (jdtls)
+        --  lspconfig.jdtls.setup({
+        --   capabilities = capabilities,
+        --   cmd = { "jdtls" },
+        --   root_dir = function(fname)
+        --     return require("lspconfig.util").root_pattern(
+        --       "pom.xml",
+        --       "gradle.build",
+        --       "build.gradle",
+        --       ".git"
+        --     )(fname) or vim.fn.getcwd()
+        --   end,
+        --   settings = {
+        --     java = {
+        --       signatureHelp = { enabled = true },
+        --       contentProvider = { preferred = "fernflower" },
+        --       completion = {
+        --         favoriteStaticMembers = {
+        --           "org.junit.Assert.*",
+        --           "org.junit.Assume.*",
+        --           "org.junit.jupiter.api.Assertions.*",
+        --           "org.junit.jupiter.api.Assumptions.*",
+        --           "org.junit.jupiter.api.DynamicContainer.*",
+        --           "org.junit.jupiter.api.DynamicTest.*",
+        --         },
+        --       },
+        --       sources = {
+        --         organizeImports = {
+        --           starThreshold = 9999,
+        --           staticStarThreshold = 9999,
+        --         },
+        --       },
+        --       codeGeneration = {
+        --         toString = {
+        --           template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
+        --         },
+        --         useBlocks = true,
+        --       },
+        --       -- runtimes = {
+        --       --   {
+        --       --     name = "JavaSE-17",
+        --       --     path = "/usr/lib/jvm/java-17-openjdk/",
+        --       --   },
+        --       -- }
+        --     },
+        --   },
+        -- })
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
