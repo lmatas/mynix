@@ -40,8 +40,7 @@
           oh-my-posh
           alacritty
           lazygit
-          ripgrep
-          
+          ripgrep          
           jdk11
           maven
 

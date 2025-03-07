@@ -16,8 +16,9 @@ autoload -Uz compinit && compinit
 eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 
 # Aliases personalizados
-alias ll='ls -la'
+alias ll='ls -las'
 alias vimdiff='nvim -d'
+alias lg='lazygit'
 
 # Configuración para Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
