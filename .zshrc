@@ -18,8 +18,8 @@ eval "$(oh-my-posh init zsh --config ~/.config/oh-my-posh/config.json)"
 # Aliases personalizados
 alias ll='ls -las'
 alias vimdiff='nvim -d'
-alias lzg='lazygit'
-alias lzd='lazydocker'
+alias lg='lazygit'
+alias lk='lazydocker'
 
 # Configuración para Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then

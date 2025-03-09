@@ -117,6 +117,7 @@ wk.add({
 	{ "<leader>vs", "<cmd>AerialToggle<cr>", desc = "[AERIAL] Toggle file structure view" },
 	{ "<leader>vt", "<cmd>ToggleTerm<cr>", desc = "[TOGGLETERM] Open new terminal" },
 	{ "<leader>vu", "<cmd>UndotreeToggle<cr>", desc = "[UNDOTREE]Toggle last undoable changes view" },
+	{ "<leader>lk", "<cmd>LazyDocker<CR>",  desc = "Toggle LazyDocker"},
 
     -- Debug
 	{ "<leader>d", group = "Debug" },

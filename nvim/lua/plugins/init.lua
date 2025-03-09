@@ -91,7 +91,8 @@ local plugins = {
 	---- Git
 	require("plugins.configs.diffview"),
 	require("plugins.configs.gitsigns"), -- Add git related info in the signs columns and popups
-  require("plugins.configs.lazygit"),
+    require("plugins.configs.lazygit"),
+	require("plugins.configs.lazydocker")
 }
 
 -- vim.api.nvim_echo({ { 'Active theme: ' .. theme.theme_name, "Normal" } }, true, {});
