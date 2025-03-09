@@ -22,7 +22,9 @@ local theme = require("theme")
 local plugins = {
 	---- UI
 	theme.get_active_theme(),
+
 	"mhinz/vim-startify", -- Start page
+	"goolord/alpha-nvim", -- Dashboard
 	"kyazdani42/nvim-web-devicons",
 	"onsails/lspkind.nvim", -- VSCode like item type icons
 	require("plugins.configs.bufferline"),
@@ -74,7 +76,7 @@ local plugins = {
 	"neovim/nvim-lspconfig",
     require("lsp.configs.dap"),
 	require("lsp.configs.java"),
-	-- require("lsp.configs.python"),
+	require("lsp.configs.python"),
 
 	---- Snippets
 	"L3MON4D3/LuaSnip",
