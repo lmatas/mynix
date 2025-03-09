@@ -1,0 +1,24 @@
+Host lrwww
+    HostName www.lareferencia.info
+    User ec2-user
+    IdentityFile /Users/lmatas/Documents/pems/lareferencia-amazon.pem
+
+Host lrrec
+    HostName recursos.lareferencia.info
+    User ec2-user
+    IdentityFile /Users/lmatas/Documents/pems/lareferencia-amazon.pem
+
+Host lrhar
+    HostName lareferencia-harvester
+    User ec2-user
+    IdentityFile /Users/lmatas/Documents/pems/lareferencia-amazon.pem
+
+Host lrmat
+    HostName matomo.lareferencia.info
+    User ubuntu
+    IdentityFile /Users/lmatas/Documents/pems/lareferencia-amazon.pem
+
+Host codink
+    HostName 52.205.104.8
+    User ec2-user
+    IdentityFile /Users/lmatas/Documents/pems/codink.pem
