@@ -36,7 +36,7 @@ local plugins = {
 	require("plugins.configs.aerial"),
 	-- require("plugins.configs.edgy"), -- Layout configurations
 	require("plugins.configs.hydra"),
-	"rcarriga/nvim-notify", -- Popup notifications
+	require("plugins.configs.notify"), -- Popup notifications
 	"mbbill/undotree",
 	require("plugins.configs.neotree"),
 	require("plugins.configs.lualine"),
@@ -47,7 +47,7 @@ local plugins = {
 	require("plugins.configs.autopairs"),
 	require("plugins.configs.dial"), -- Extended increment/decrement functions
 	require("plugins.configs.surround"), -- Autochange open/close chars
-	-- require("plugins.configs.colorizer"), -- Colorize written color codes (#02F1AA, rgb(0,10,20)...)
+	require("plugins.configs.colorizer"), -- Colorize written color codes (#02F1AA, rgb(0,10,20)...)
 	require("plugins.configs.neoclip"), -- Clipboard manager
 	require("plugins.configs.toggleterm"), --- Improved terminal toggle
 	-- require("plugins.configs.illuminate"), --- Automatically highlighting other uses of the word under the cursor

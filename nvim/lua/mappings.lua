@@ -111,7 +111,7 @@ wk.add({
 
     -- Views
 	{ "<leader>v", group = "Views" },
-	{ "<leader>vf", "<cmd>NeoTreeFocusToggle<cr>", desc = "[NEOTREE] Toggle file tree view" },
+	{ "<leader>vf", "<cmd>Neotree focus<cr>", desc = "[NEOTREE] Neotree focus" },
     { "<c-n>", "<cmd>NeoTreeFocusToggle<cr>", desc = "[NEOTREE] Toggle file tree view" },
 	{ "<leader>vp", "<cmd>Trouble diagnostics<cr>", desc = "[TROUBLE] Toggle problem and diagnostics view" },
 	{ "<leader>vs", "<cmd>AerialToggle<cr>", desc = "[AERIAL] Toggle file structure view" },

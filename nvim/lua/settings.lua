@@ -64,10 +64,10 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- nvim-notify as default vim notification method
-local _notify, notify = pcall(require, "notify")
-if _notify then
-    vim.notify = notify
-end
-
+-- local _notify, notify = pcall(require, "notify")
+-- if _notify then
+--     vim.notify = notify
+-- end
+--
 -- UI theme
 require("theme").set_active_theme("dracula")
