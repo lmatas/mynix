@@ -44,6 +44,10 @@
           ripgrep          
           jdk11
           maven
+          browsh
+          macmon
+          tabiew
+
 
           python312
           python312Packages.pip
@@ -86,6 +90,7 @@
             "firefox"
             "google-chrome"
             "the-unarchiver"
+
 
           ];
           onActivation.cleanup = "zap";

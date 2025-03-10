@@ -36,7 +36,6 @@ style = "Italic"
 family = "JetBrainsMono Nerd Font"
 style = "Bold Italic"
 
-# [terminal.shell]
-
-# args = ["new-session", "-A", "-s", "main"]
- # args = []
+#[terminal.shell]
+#program = "/run/current-system/sw/bin/tmux"
+#args = ["new-session", "-A", "-s", "main"]
