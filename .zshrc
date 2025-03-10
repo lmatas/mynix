@@ -41,3 +41,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
+if ! tmux has-session 2>/dev/null; then
+    tmux new-session -s main
+fi
+
