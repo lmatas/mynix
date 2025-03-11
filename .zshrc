@@ -41,7 +41,11 @@ alias vim="nvim"
 alias vi="nvim"
 alias v="nvim"
 
-if ! tmux has-session 2>/dev/null; then
+if tmux has-session -t main 2>/dev/null; then
+    tmux attach-session -t main
+else
     tmux new-session -s main
 fi
+
+# tmux attach-session || tmux new-session -s main
 

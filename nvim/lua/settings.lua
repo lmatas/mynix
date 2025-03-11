@@ -70,4 +70,4 @@ vim.g.maplocalleader = ' '
 -- end
 --
 -- UI theme
-require("theme").set_active_theme("dracula")
+require("theme").set_active_theme("catppuccin")

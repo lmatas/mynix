@@ -47,6 +47,7 @@
           browsh
           macmon
           tabiew
+          
 
 
           python312
