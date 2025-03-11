@@ -22,3 +22,10 @@ Host codink
     HostName 52.205.104.8
     User ec2-user
     IdentityFile /Users/lmatas/Documents/pems/codink.pem
+
+Host dark
+    HostName dark-resolver.lareferencia.info  
+    User ubuntu
+    IdentityFile /Users/lmatas/Documents/pems/lareferencia-dark.pem  
+
+
