@@ -24,7 +24,7 @@ Host codink
     IdentityFile /Users/lmatas/Documents/pems/codink.pem
 
 Host dark
-    HostName dark-resolver.lareferencia.info  
+    HostName dark-01.dark-pid.net
     User ubuntu
     IdentityFile /Users/lmatas/Documents/pems/lareferencia-dark.pem  
 
