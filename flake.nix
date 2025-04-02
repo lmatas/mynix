@@ -48,8 +48,6 @@
           macmon
           tabiew
           
-
-
           python312
           python312Packages.pip
 
@@ -65,7 +63,9 @@
           bash-language-server
           jdt-language-server
           pyright
-  
+
+          postgresql_14
+          coreutils
 
         ];
 
