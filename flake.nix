@@ -1,6 +1,7 @@
 {
   description = "lmatas nix-darwin system flake";
 
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin/master";
@@ -42,7 +43,7 @@
           lazygit
           lazydocker
           ripgrep          
-          jdk11
+          openjdk11
           maven
           browsh
           macmon
@@ -64,7 +65,8 @@
           jdt-language-server
           pyright
 
-          postgresql_14
+          postgresql_17
+          mysql84
           coreutils
 
         ];
@@ -77,9 +79,11 @@
         ];
 
         environment.variables = {
-          JAVA_HOME = "${pkgs.openjdk11}/zulu-11.jdk/Contents/Home";
-          PATH = "$JAVA_HOME/bin:$PATH";
+          JAVA_HOME = "${pkgs.openjdk11}/lib/openjdk";
+          PATH = "${pkgs.openjdk11}/bin:${pkgs.openjdk11}/lib/openjdk/bin:$PATH";
         };
+
+        system.primaryUser = "lmatas";
 
         # Add this section:
         users.users.lmatas = { home = "/Users/lmatas"; };
@@ -183,6 +187,7 @@
               };
             } # nix-homebrew
 
+ 
           ];
         };
     };
