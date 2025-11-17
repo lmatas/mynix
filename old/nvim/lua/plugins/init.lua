@@ -35,7 +35,7 @@ local plugins = {
 	require("plugins.configs.trouble"),
 	require("plugins.configs.aerial"),
 	-- require("plugins.configs.edgy"), -- Layout configurations
-	-- require("plugins.configs.hydra"),
+	require("plugins.configs.hydra"),
 	require("plugins.configs.notify"), -- Popup notifications
 	"mbbill/undotree",
 	require("plugins.configs.neotree"),

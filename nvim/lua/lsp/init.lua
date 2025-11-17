@@ -1,116 +1,172 @@
+-- Nueva config LSP para Neovim 0.11+ usando vim.lsp.config
+-- Sustituye todo tu archivo por esto
+
 local capabilities = require("lsp.handlers").capabilities
 
-local _lspconfig, lspconfig = pcall(require, "lspconfig")
-if _lspconfig then
-	-- Python
-	lspconfig.pyright.setup({
-		autostart = false,
-		capabilities = capabilities,
-	})
+-- Helper base para iniciar un LSP con capacidades por defecto
+local function start_lsp(server, opts)
+  opts = opts or {}
 
-	-- LUA
-	lspconfig.lua_ls.setup({
-		autostart = false,
-		settings = {
-			Lua = {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-					version = "LuaJIT",
-				},
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
-				},
-				workspace = {
-					-- Make the server aware of Neovim runtime files
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				-- Do not send telemetry data containing a randomized but unique identifier
-				telemetry = {
-					enable = false,
-				},
-			},
-		},
-	})
-	-- Rust
-	lspconfig.rust_analyzer.setup({
-		on_attach = function(client, bufnr)
-			require("lsp.handlers").on_attach(client, bufnr)
-			-- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-		end,
-		-- capabilities = capabilities,
-		settings = {
-			["rust-analyzer"] = {
-				diagnostics = {
-					enable = true,
-				},
-				imports = {
-					granularity = {
-						group = "module",
-					},
-					prefix = "self",
-				},
-				cargo = {
-					buildScripts = {
-						enable = true,
-					},
-				},
-				procMacro = {
-					enable = true,
-				},
-			},
-		},
-	})
+  -- mezcla capabilities por defecto con las opciones específicas
+  opts = vim.tbl_deep_extend("force", {
+    capabilities = capabilities,
+  }, opts)
 
-	-- Clangd (C++)
-	lspconfig.clangd.setup({})
-
-	-- Bash
-	lspconfig.bashls.setup({
-		autostart = false,
-	})
-
-	-- Javascript/Typescript
-	lspconfig.eslint.setup({
-		autostart = true,
-		capabilities = capabilities,
-		settings = {
-			packageManager = "npm",
-		},
-		on_attach = function(client, bufnr)
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = bufnr,
-				command = "EslintFixAll",
-			})
-		end,
-	})
-
-	-- HTML
-	lspconfig.html.setup({
-		autostart = false,
-		capabilities = capabilities,
-	})
-
-	-- CSS
-	lspconfig.cssls.setup({
-		autostart = false,
-		capabilities = capabilities,
-	})
-
-	-- Dockerfile
-	lspconfig.dockerls.setup({
-		autostart = false,
-		capabilities = capabilities,
-	})
-
-	-- Docker compose
-	lspconfig.docker_compose_language_service.setup({
-		autostart = false,
-		capabilities = capabilities,
-	})
-	-- XML
-	lspconfig.lemminx.setup({})
-
-	-- VUE
-	lspconfig.vuels.setup({})
+  vim.lsp.start(vim.lsp.config(server, opts))
 end
+
+-- Helper: autostart según FileType (equivalente a autostart = true)
+local function setup_autostart(server, patterns, opts)
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = patterns,
+    callback = function()
+      start_lsp(server, opts)
+    end,
+  })
+end
+
+-- Helper: inicio manual vía comando (equivalente a autostart = false)
+local function setup_manual(server, command_name, opts)
+  vim.api.nvim_create_user_command(command_name, function()
+    start_lsp(server, opts)
+  end, {})
+end
+
+-----------------------------------------------------------------------
+-- Python - pyright (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("pyright", "LspStartPyright", {
+  -- si quisieras añadir cosas específicas, van aquí
+  -- por ahora queda vacío para respetar tu config original
+})
+
+-----------------------------------------------------------------------
+-- Lua - lua_ls (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("lua_ls", "LspStartLuaLS", {
+  settings = {
+    Lua = {
+      runtime = {
+        version = "LuaJIT",
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+})
+
+-----------------------------------------------------------------------
+-- Rust - rust_analyzer
+-----------------------------------------------------------------------
+setup_autostart("rust_analyzer", { "rust" }, {
+  on_attach = function(client, bufnr)
+    require("lsp.handlers").on_attach(client, bufnr)
+    -- si quieres activar inlay hints:
+    -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end,
+  settings = {
+    ["rust-analyzer"] = {
+      diagnostics = {
+        enable = true,
+      },
+      imports = {
+        granularity = {
+          group = "module",
+        },
+        prefix = "self",
+      },
+      cargo = {
+        buildScripts = {
+          enable = true,
+        },
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
+})
+
+-----------------------------------------------------------------------
+-- C / C++ - clangd
+-----------------------------------------------------------------------
+setup_autostart("clangd", { "c", "cpp", "objc", "objcpp" }, {
+  -- sin opciones adicionales
+})
+
+-----------------------------------------------------------------------
+-- Bash - bashls (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("bashls", "LspStartBash", {
+  -- sin opciones adicionales
+})
+
+-----------------------------------------------------------------------
+-- Javascript / Typescript - eslint
+-----------------------------------------------------------------------
+setup_autostart("eslint", {
+  "javascript",
+  "javascriptreact",
+  "typescript",
+  "typescriptreact",
+  -- añade más filetypes si quieres
+}, {
+  settings = {
+    packageManager = "npm",
+  },
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
+})
+
+-----------------------------------------------------------------------
+-- HTML - html (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("html", "LspStartHtml", {
+  -- capabilities se añaden automáticamente por start_lsp
+})
+
+-----------------------------------------------------------------------
+-- CSS - cssls (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("cssls", "LspStartCss", {
+  -- sin opciones extra
+})
+
+-----------------------------------------------------------------------
+-- Dockerfile - dockerls (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("dockerls", "LspStartDocker", {
+  -- sin opciones extra
+})
+
+-----------------------------------------------------------------------
+-- Docker Compose - docker_compose_language_service (antes autostart = false)
+-----------------------------------------------------------------------
+setup_manual("docker_compose_language_service", "LspStartDockerCompose", {
+  -- sin opciones extra
+})
+
+-----------------------------------------------------------------------
+-- XML - lemminx
+-----------------------------------------------------------------------
+setup_autostart("lemminx", { "xml", "xsd", "xsl", "xslt", "svg" }, {
+  -- sin opciones extra
+})
+
+-----------------------------------------------------------------------
+-- Vue - vuels
+-----------------------------------------------------------------------
+setup_autostart("vuels", { "vue" }, {
+  -- sin opciones extra
+})
